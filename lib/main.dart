@@ -19,11 +19,44 @@ class MyApp extends StatelessWidget {
                 backgroundImage: AssetImage('images/profile.jpg'),
               ),
               Text(
-                'h_n',
+                'haidi nata',
                 style: TextStyle(
-                  fontSize: 40,
+                  fontSize: 40.0,
+                  fontFamily: "Pacifico",
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                'Flutter Developer',
+                style: TextStyle(
+                  fontFamily: 'Source Sans Pro',
+                  color: Colors.teal.shade100,
+                  fontSize: 20.0,
+                  letterSpacing: 2.5,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Container(
+                color: Colors.white,
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.phone,
+                      color: Colors.teal,
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Text(
+                      " +62 821 9036 7595",
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.teal.shade900,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
