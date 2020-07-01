@@ -27,6 +27,7 @@ class _ButtonsState extends State<Buttons> {
     Colors.blue,
     Colors.yellow,
     Colors.green,
+    Colors.teal,
     Colors.blue,
     Colors.purple,
   ];
@@ -34,16 +35,19 @@ class _ButtonsState extends State<Buttons> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         for (int i = 0; i < colors.length; i++)
-          FlatButton(
-            onPressed: () {
-              print("click me clicked");
-              final player = AudioCache();
-              player.play("note${i + 1}.wav");
-            },
-            color: colors[i],
-            child: null,
+          Expanded(
+            child: FlatButton(
+              onPressed: () {
+                print("click me clicked");
+                final player = AudioCache();
+                player.play("note${i + 1}.wav");
+              },
+              color: colors[i],
+              child: null,
+            ),
           ),
       ],
     );
