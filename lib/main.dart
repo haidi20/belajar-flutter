@@ -1,47 +1,51 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
+import 'package:audioplayers/audio_cache.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(XylophoneApp());
 
-class MyApp extends StatelessWidget {
+class XylophoneApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.blue,
-        appBar: AppBar(
-          backgroundColor: Colors.blue.shade900,
-          title: Text('Ask Me Anything'),
+        body: SafeArea(
+          child: Buttons(),
         ),
-        body: Ball(),
       ),
     );
   }
 }
 
-class Ball extends StatefulWidget {
+class Buttons extends StatefulWidget {
   @override
-  _BallState createState() => _BallState();
+  _ButtonsState createState() => _ButtonsState();
 }
 
-class _BallState extends State<Ball> {
-  int ballNumber = 0;
-
-  void changeBall() {
-    setState(() {
-      ballNumber = Random().nextInt(4) + 1;
-    });
-  }
+class _ButtonsState extends State<Buttons> {
+  List<Color> colors = [
+    Colors.red,
+    Colors.blue,
+    Colors.yellow,
+    Colors.green,
+    Colors.blue,
+    Colors.purple,
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: FlatButton(
-        onPressed: () => changeBall(),
-        child: Image.asset("images/ball$ballNumber.png"),
-      ),
+    return Column(
+      children: [
+        for (int i = 0; i < colors.length; i++)
+          FlatButton(
+            onPressed: () {
+              print("click me clicked");
+              final player = AudioCache();
+              player.play("note${i + 1}.wav");
+            },
+            color: colors[i],
+            child: null,
+          ),
+      ],
     );
   }
 }
