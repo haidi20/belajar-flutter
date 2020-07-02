@@ -1,55 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audio_cache.dart';
 
-void main() => runApp(XylophoneApp());
+void main() => runApp(Quizzler());
 
-class XylophoneApp extends StatelessWidget {
+class Quizzler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
-          child: Buttons(),
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                flex: 5,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "atas",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Text(
+                  "tengah",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Text(
+                  "bawah",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    );
-  }
-}
-
-class Buttons extends StatefulWidget {
-  @override
-  _ButtonsState createState() => _ButtonsState();
-}
-
-class _ButtonsState extends State<Buttons> {
-  List<Color> colors = [
-    Colors.red,
-    Colors.blue,
-    Colors.yellow,
-    Colors.green,
-    Colors.teal,
-    Colors.blue,
-    Colors.purple,
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        for (int i = 0; i < colors.length; i++)
-          Expanded(
-            child: FlatButton(
-              onPressed: () {
-                print("click me clicked");
-                final player = AudioCache();
-                player.play("note${i + 1}.wav");
-              },
-              color: colors[i],
-              child: null,
-            ),
-          ),
-      ],
     );
   }
 }
