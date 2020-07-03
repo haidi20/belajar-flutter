@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './question.dart';
 
 void main() => runApp(Quizzler());
 
@@ -27,13 +28,23 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  List<String> questions = [
-    'Some cats are actually allergic to humans.',
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.'
+  List<Question> questions = [
+    Question(q: 'Some cats are actually allergic to humans', a: true),
+    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
+    Question(
+        q: 'Approximately one quarter of human bones are in the feet.',
+        a: true),
+    Question(q: 'A slug\'s blood is green.', a: true),
   ];
 
-  List<bool> answer = [true, false, true];
+  // List<bool> answer = [true, false, true];
+
+  Question q1 =
+      new Question(q: 'Some cats are actually allergic to humans.', a: true);
+
+  _QuizPageState() {
+    print(q1.questionText);
+  }
 
   int questionNumber = 1;
 
@@ -43,7 +54,7 @@ class _QuizPageState extends State<QuizPage> {
 
       if (questionNumber <= questions.length &&
           scoreKeeper.length < questions.length) {
-        if (choose == answer[questionNumber - 1]) {
+        if (choose == questions[questionNumber - 1].questionAnswer) {
           scoreKeeper.add(
             Icon(Icons.check, color: Colors.green),
           );
@@ -70,7 +81,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber - 1],
+                questions[questionNumber - 1].questionText,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
