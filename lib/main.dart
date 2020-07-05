@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import './question.dart';
+
+import "./quiz_brain.dart";
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() => runApp(Quizzler());
 
@@ -28,33 +30,12 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  List<Question> questions = [
-    Question(q: 'Some cats are actually allergic to humans', a: true),
-    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
-    Question(
-        q: 'Approximately one quarter of human bones are in the feet.',
-        a: true),
-    Question(q: 'A slug\'s blood is green.', a: true),
-  ];
+  QuizBrain quizBrain = QuizBrain();
 
-  // List<bool> answer = [true, false, true];
-
-  Question q1 =
-      new Question(q: 'Some cats are actually allergic to humans.', a: true);
-
-  _QuizPageState() {
-    print(q1.questionText);
-  }
-
-  int questionNumber = 1;
-
-  void changeQuestion(bool choose) {
+  void answering(bool choose, var context) {
     setState(() {
-      print("${questionNumber} ${questions.length} ${scoreKeeper.length}");
-
-      if (questionNumber <= questions.length &&
-          scoreKeeper.length < questions.length) {
-        if (choose == questions[questionNumber - 1].questionAnswer) {
+      if (scoreKeeper.length < quizBrain.getQuestionLength()) {
+        if (choose == quizBrain.getAnswer()) {
           scoreKeeper.add(
             Icon(Icons.check, color: Colors.green),
           );
@@ -63,9 +44,15 @@ class _QuizPageState extends State<QuizPage> {
             Icon(Icons.close, color: Colors.red),
           );
         }
+      } else {
+        Alert(
+          context: context,
+          title: "ALERT",
+          desc: "Finish of a questions.!",
+        ).show();
       }
 
-      questionNumber < questions.length ? questionNumber++ : null;
+      quizBrain.nextQuestion();
     });
   }
 
@@ -81,7 +68,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber - 1].questionText,
+                quizBrain.getQuestion(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
@@ -95,7 +82,7 @@ class _QuizPageState extends State<QuizPage> {
           child: Padding(
             padding: EdgeInsets.all(15.0),
             child: FlatButton(
-              onPressed: () => changeQuestion(true),
+              onPressed: () => answering(true, context),
               color: Colors.green,
               child: Text(
                 "True",
@@ -111,7 +98,7 @@ class _QuizPageState extends State<QuizPage> {
           child: Padding(
             padding: EdgeInsets.all(15.0),
             child: FlatButton(
-              onPressed: () => changeQuestion(false),
+              onPressed: () => answering(false, context),
               color: Colors.red,
               child: Text(
                 "False",
