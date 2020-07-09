@@ -12,7 +12,7 @@ class SliderContent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          "HEIGHT",
+          "TINGGI",
           style: TextStyle(
             fontSize: 18.0,
           ),

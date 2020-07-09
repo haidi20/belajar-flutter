@@ -31,7 +31,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("BMI Calculator"),
+        title: Text("Kalkulator Indeks Masa Tubuh"),
       ),
       body: SafeArea(
         child: Column(
@@ -51,7 +51,7 @@ class _InputPageState extends State<InputPage> {
                           ? inactiveCardColor
                           : activeCardColor,
                       cardChild: ReuseableIcon(
-                        label: "Male",
+                        label: "PRIA",
                         icon: FontAwesomeIcons.mars,
                       ),
                     ),
@@ -67,7 +67,7 @@ class _InputPageState extends State<InputPage> {
                           ? inactiveCardColor
                           : activeCardColor,
                       cardChild: ReuseableIcon(
-                        label: "Female",
+                        label: "WANITA",
                         icon: FontAwesomeIcons.venus,
                       ),
                     ),
@@ -95,7 +95,7 @@ class _InputPageState extends State<InputPage> {
                     child: ReuseableCard(
                       color: activeCardColor,
                       cardChild: WeightContent(
-                        label: "WEIGHT",
+                        label: "BERAT",
                         weight: weight,
                         onPressed: (String type) {
                           setState(() {
@@ -113,7 +113,7 @@ class _InputPageState extends State<InputPage> {
                     child: ReuseableCard(
                       color: activeCardColor,
                       cardChild: WeightContent(
-                        label: "AGE",
+                        label: "UMUR",
                         weight: age,
                         onPressed: (String type) {
                           setState(() {
@@ -134,10 +134,12 @@ class _InputPageState extends State<InputPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ResultPage()),
+                  MaterialPageRoute(
+                    builder: (context) => ResultPage(),
+                  ),
                 );
               },
-              child: Text("CALCULATE"),
+              child: Text("AKUMULASI"),
               color: Color(0xFFEB1555),
             ),
           ],
