@@ -1,5 +1,7 @@
 import "./icon_content.dart";
 import "./reuseable_card.dart";
+import "./slider_content.dart";
+import "./weight_content.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
@@ -21,6 +23,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender selectGender;
   int height = 180;
+  int weight = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -73,57 +76,13 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               child: ReuseableCard(
                 color: activeCardColor,
-                cardChild: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "HEIGHT",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: <Widget>[
-                        Text(
-                          "$height",
-                          style: TextStyle(
-                            fontSize: 60.0,
-                          ),
-                        ),
-                        Text(
-                          "cm",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SliderTheme(
-                      data: SliderTheme.of(context).copyWith(
-                        activeTickMarkColor: Colors.white,
-                        thumbColor: Color(0xFFEB1555),
-                        overlayColor: Color(0x29EB1555),
-                        thumbShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                        overlayShape:
-                            RoundSliderOverlayShape(overlayRadius: 30.0),
-                      ),
-                      child: Slider(
-                        value: height.toDouble(),
-                        min: 120.0,
-                        max: 220.0,
-                        inactiveColor: Color(0xFF8D8E98),
-                        onChanged: (double newValue) {
-                          setState(() {
-                            height = newValue.round();
-                          });
-                        },
-                      ),
-                    ),
-                  ],
+                cardChild: SliderContent(
+                  height: height,
+                  onChange: (double newValue) {
+                    setState(() {
+                      height = newValue.round();
+                    });
+                  },
                 ),
               ),
             ),
@@ -133,6 +92,18 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: ReuseableCard(
                       color: activeCardColor,
+                      cardChild: WeightContent(
+                        weight: weight,
+                        onPressed: (String type) {
+                          setState(() {
+                            if (type == "encriment") {
+                              weight++;
+                            } else if (type == "decriment") {
+                              weight--;
+                            }
+                          });
+                        },
+                      ),
                     ),
                   ),
                   Expanded(
