@@ -2,9 +2,10 @@ import "package:flutter/material.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class WeightContent extends StatelessWidget {
-  WeightContent({@required this.weight, this.onPressed});
+  WeightContent({@required this.label, this.weight, this.onPressed});
 
   final int weight;
+  final String label;
   final Function onPressed;
 
   @override
@@ -13,15 +14,15 @@ class WeightContent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          "WEIGHT",
+          "$label",
           style: TextStyle(
-            fontSize: 20.0,
+            fontSize: 14.0,
           ),
         ),
         Text(
           "$weight",
           style: TextStyle(
-            fontSize: 58.0,
+            fontSize: 40.0,
           ),
         ),
         Row(
@@ -29,8 +30,9 @@ class WeightContent extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: FloatingActionButton(
+                heroTag: "btn1-$label",
                 onPressed: () => onPressed("decriment"),
-                backgroundColor: Color(0xFF1F132F),
+                backgroundColor: Color(0xFF4C4F5E),
                 child: Icon(
                   FontAwesomeIcons.minus,
                   color: Colors.white,
@@ -39,8 +41,9 @@ class WeightContent extends StatelessWidget {
             ),
             Expanded(
               child: FloatingActionButton(
+                heroTag: "btn2-$label",
                 onPressed: () => onPressed("encriment"),
-                backgroundColor: Color(0xFF1F132F),
+                backgroundColor: Color(0xFF4C4F5E),
                 child: Icon(
                   FontAwesomeIcons.plus,
                   color: Colors.white,

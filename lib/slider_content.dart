@@ -25,7 +25,7 @@ class SliderContent extends StatelessWidget {
             Text(
               "$height",
               style: TextStyle(
-                fontSize: 50.0,
+                fontSize: 40.0,
               ),
             ),
             Text(
@@ -41,8 +41,8 @@ class SliderContent extends StatelessWidget {
             activeTickMarkColor: Colors.white,
             thumbColor: Color(0xFFEB1555),
             overlayColor: Color(0x29EB1555),
-            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
-            overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
+            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 13.0),
+            overlayShape: RoundSliderOverlayShape(overlayRadius: 25.0),
           ),
           child: Slider(
             value: height.toDouble(),

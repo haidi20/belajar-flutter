@@ -1,3 +1,4 @@
+import "./result_page.dart";
 import "./icon_content.dart";
 import "./reuseable_card.dart";
 import "./slider_content.dart";
@@ -22,6 +23,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectGender;
+  int age = 20;
   int height = 180;
   int weight = 60;
 
@@ -93,6 +95,7 @@ class _InputPageState extends State<InputPage> {
                     child: ReuseableCard(
                       color: activeCardColor,
                       cardChild: WeightContent(
+                        label: "WEIGHT",
                         weight: weight,
                         onPressed: (String type) {
                           setState(() {
@@ -109,10 +112,33 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: ReuseableCard(
                       color: activeCardColor,
+                      cardChild: WeightContent(
+                        label: "AGE",
+                        weight: age,
+                        onPressed: (String type) {
+                          setState(() {
+                            if (type == "encriment") {
+                              age++;
+                            } else if (type == "decriment") {
+                              age--;
+                            }
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ],
               ),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ResultPage()),
+                );
+              },
+              child: Text("CALCULATE"),
+              color: Color(0xFFEB1555),
             ),
           ],
         ),

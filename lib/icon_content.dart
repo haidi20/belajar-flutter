@@ -13,15 +13,15 @@ class ReuseableIcon extends StatelessWidget {
       children: <Widget>[
         Icon(
           icon,
-          size: 80.0,
+          size: 60.0,
         ),
         SizedBox(
-          height: 15.0,
+          height: 10.0,
         ),
         Text(
           label,
           style: TextStyle(
-            fontSize: 18.0,
+            fontSize: 14.0,
           ),
         ),
       ],
